@@ -23,6 +23,7 @@ def main():
     # Configure the logger to show messages from INFO level and above
     logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
 
+    widgets.generate_widgets_wrapper(header_file, script_directory, lvgl_root)
     core.generate_core_wrapper(header_file, script_directory, lvgl_root)
 
 
