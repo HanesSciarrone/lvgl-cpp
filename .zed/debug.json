@@ -1,0 +1,18 @@
+// Project-local debug tasks
+//
+// For more documentation on how to configure debug tasks,
+// see: https://zed.dev/docs/debugger
+[
+  {
+    "label": "generate_lvgl_wrappers.py",
+    "adapter": "Debugpy",
+    "request": "launch",
+    // Correct script path
+    "program": "generate_lvgl_wrappers.py",
+    // Use your Python toolchain
+    "python": "python3",
+    "args": [],
+    // !!! Important: run from generator/
+    "cwd": "$ZED_WORKTREE_ROOT"
+  }
+]
