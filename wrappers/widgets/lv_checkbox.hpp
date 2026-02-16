@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvCheckbox {
 public:
+    explicit LvCheckbox() : obj(nullptr) {}
+
     explicit LvCheckbox(lv_obj_t* parent) : obj(lv_checkbox_create(parent)) {}
 
     void lv_set_text(const char * txt) 
@@ -30,12 +32,14 @@ public:
         return lv_checkbox_get_text(obj);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_CHECKBOX_HPP */

@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvImage {
 public:
+    explicit LvImage() : obj(nullptr) {}
+
     explicit LvImage(lv_obj_t* parent) : obj(lv_image_create(parent)) {}
 
     void lv_set_src(const void * src) 
@@ -170,12 +172,14 @@ public:
         return lv_image_bind_src(obj, subject);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_IMAGE_HPP */

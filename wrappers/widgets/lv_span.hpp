@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvSpan {
 public:
+    explicit LvSpan() : obj(nullptr) {}
+
     explicit LvSpan(lv_obj_t* parent) : obj(lv_spangroup_create(parent)) {}
 
     void lv_stack_init() 
@@ -182,12 +184,14 @@ public:
         return lv_spangroup_bind_span_text(obj, span, subject, fmt);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_SPAN_HPP */

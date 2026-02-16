@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvArclabel {
 public:
+    explicit LvArclabel() : obj(nullptr) {}
+
     explicit LvArclabel(lv_obj_t* parent) : obj(lv_arclabel_create(parent)) {}
 
     void lv_set_text(const char * text) 
@@ -81,6 +83,16 @@ public:
         lv_arclabel_set_text_horizontal_align(obj, align);
     }
 
+    void lv_set_overflow(lv_arclabel_overflow_t overflow) 
+    { 
+        lv_arclabel_set_overflow(obj, overflow);
+    }
+
+    void lv_set_end_overlap(bool overlap) 
+    { 
+        lv_arclabel_set_end_overlap(obj, overlap);
+    }
+
     lv_value_precise_t lv_get_angle_start() 
     { 
         return lv_arclabel_get_angle_start(obj);
@@ -126,12 +138,29 @@ public:
         return lv_arclabel_get_text_horizontal_align(obj);
     }
 
+    lv_arclabel_overflow_t lv_get_overflow() 
+    { 
+        return lv_arclabel_get_overflow(obj);
+    }
+
+    bool lv_get_end_overlap() 
+    { 
+        return lv_arclabel_get_end_overlap(obj);
+    }
+
+    lv_value_precise_t lv_get_text_angle() 
+    { 
+        return lv_arclabel_get_text_angle(obj);
+    }
 
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_ARCLABEL_HPP */

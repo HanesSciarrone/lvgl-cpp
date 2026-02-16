@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvLabel {
 public:
+    explicit LvLabel() : obj(nullptr) {}
+
     explicit LvLabel(lv_obj_t* parent) : obj(lv_label_create(parent)) {}
 
     void lv_set_text(const char * text) 
@@ -111,12 +113,14 @@ public:
         lv_label_cut_text(obj, pos, cnt);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_LABEL_HPP */

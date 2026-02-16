@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvChart {
 public:
+    explicit LvChart() : obj(nullptr) {}
+
     explicit LvChart(lv_obj_t* parent) : obj(lv_chart_create(parent)) {}
 
     void lv_set_type(lv_chart_type_t type) 
@@ -68,6 +70,21 @@ public:
     uint32_t lv_get_point_count() 
     { 
         return lv_chart_get_point_count(obj);
+    }
+
+    lv_chart_update_mode_t lv_get_update_mode() 
+    { 
+        return lv_chart_get_update_mode(obj);
+    }
+
+    uint32_t lv_get_hor_div_line_count() 
+    { 
+        return lv_chart_get_hor_div_line_count(obj);
+    }
+
+    uint32_t lv_get_ver_div_line_count() 
+    { 
+        return lv_chart_get_ver_div_line_count(obj);
     }
 
     uint32_t lv_get_x_start_point(lv_chart_series_t * ser) 
@@ -220,12 +237,14 @@ public:
         return lv_chart_get_first_point_center_offset(obj);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_CHART_HPP */

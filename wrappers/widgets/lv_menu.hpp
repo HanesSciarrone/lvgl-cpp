@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvMenu {
 public:
+    explicit LvMenu() : obj(nullptr) {}
+
     explicit LvMenu(lv_obj_t* parent) : obj(lv_menu_separator_create(parent)) {}
 
     void lv_set_page(lv_obj_t * page) 
@@ -85,17 +87,29 @@ public:
         return lv_menu_back_button_is_root(obj, obj);
     }
 
+    lv_menu_mode_header_t lv_get_mode_header() 
+    { 
+        return lv_menu_get_mode_header(obj);
+    }
+
+    lv_menu_mode_root_back_button_t lv_get_mode_root_back_button() 
+    { 
+        return lv_menu_get_mode_root_back_button(obj);
+    }
+
     void lv_clear_history() 
     { 
         lv_menu_clear_history(obj);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_MENU_HPP */

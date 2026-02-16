@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvWin {
 public:
+    explicit LvWin() : obj(nullptr) {}
+
     explicit LvWin(lv_obj_t* parent) : obj(lv_win_create(parent)) {}
 
     lv_obj_t * lv_add_title(const char * txt) 
@@ -35,12 +37,14 @@ public:
         return lv_win_get_content(obj);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_WIN_HPP */

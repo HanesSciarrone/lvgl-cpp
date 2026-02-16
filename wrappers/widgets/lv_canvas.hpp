@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvCanvas {
 public:
+    explicit LvCanvas() : obj(nullptr) {}
+
     explicit LvCanvas(lv_obj_t* parent) : obj(lv_canvas_create(parent)) {}
 
     void lv_set_buffer(void * buf, int32_t w, int32_t h, lv_color_format_t cf) 
@@ -28,6 +30,11 @@ public:
     void lv_set_px(int32_t x, int32_t y, lv_color_t color, lv_opa_t opa) 
     { 
         lv_canvas_set_px(obj, x, y, color, opa);
+    }
+
+    void lv_set_px_skip_invalidate(int32_t x, int32_t y, lv_color_t color, lv_opa_t opa) 
+    { 
+        lv_canvas_set_px_skip_invalidate(obj, x, y, color, opa);
     }
 
     void lv_set_palette(uint8_t index, lv_color32_t color) 
@@ -55,9 +62,9 @@ public:
         return lv_canvas_get_buf(obj);
     }
 
-    void lv_copy_buf(const lv_area_t * canvas_area, lv_draw_buf_t * dest_buf, const lv_area_t * dest_area) 
+    void lv_copy_buf(const lv_area_t * canvas_area, lv_draw_buf_t * src_buf, const lv_area_t * src_area) 
     { 
-        lv_canvas_copy_buf(obj, canvas_area, dest_buf, dest_area);
+        lv_canvas_copy_buf(obj, canvas_area, src_buf, src_area);
     }
 
     void lv_fill_bg(lv_color_t color, lv_opa_t opa) 
@@ -80,12 +87,14 @@ public:
         return lv_canvas_buf_size(w, h, bpp, stride);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_CANVAS_HPP */

@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvLine {
 public:
+    explicit LvLine() : obj(nullptr) {}
+
     explicit LvLine(lv_obj_t* parent) : obj(lv_line_create(parent)) {}
 
     void lv_set_points(const lv_point_precise_t points[], uint32_t point_num) 
@@ -55,12 +57,14 @@ public:
         return lv_line_get_y_invert(obj);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_LINE_HPP */

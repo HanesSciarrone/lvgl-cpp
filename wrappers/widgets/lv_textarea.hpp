@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvTextarea {
 public:
+    explicit LvTextarea() : obj(nullptr) {}
+
     explicit LvTextarea(lv_obj_t* parent) : obj(lv_textarea_create(parent)) {}
 
     void lv_add_char(uint32_t c) 
@@ -73,6 +75,11 @@ public:
     void lv_set_accepted_chars(const char * list) 
     { 
         lv_textarea_set_accepted_chars(obj, list);
+    }
+
+    void lv_set_accepted_chars_static(const char * list) 
+    { 
+        lv_textarea_set_accepted_chars_static(obj, list);
     }
 
     void lv_set_max_length(uint32_t num) 
@@ -195,12 +202,14 @@ public:
         lv_textarea_cursor_up(obj);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_TEXTAREA_HPP */

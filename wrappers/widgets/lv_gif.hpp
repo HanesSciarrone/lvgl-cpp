@@ -1,21 +1,21 @@
-#ifndef LV_BUTTON_HPP
-#define LV_BUTTON_HPP
+#ifndef LV_GIF_HPP
+#define LV_GIF_HPP
 
 #pragma once
 
 #include <utility> // Required for std::forward if it is used
 
 extern "C" {
-#include "lvgl/src/widgets/button/lv_button.h"
+#include "lvgl/src/widgets/gif/lv_gif.h"
 }
 
 namespace lvgl {
 
-class LvButton {
+class LvGif {
 public:
-    explicit LvButton() : obj(nullptr) {}
+    explicit LvGif() : obj(nullptr) {}
 
-    explicit LvButton(lv_obj_t* parent) : obj(lv_button_create(parent)) {}
+    explicit LvGif(lv_obj_t* parent) : obj(parent) {}
 
     lv_obj_t* lv_get_obj() const { return obj; }
 
@@ -27,4 +27,4 @@ private:
 };
 
 } // namespace lvgl
-#endif /* LV_BUTTON_HPP */
+#endif /* LV_GIF_HPP */

@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvMsgbox {
 public:
+    explicit LvMsgbox() : obj(nullptr) {}
+
     explicit LvMsgbox(lv_obj_t* parent) : obj(lv_msgbox_create(parent)) {}
 
     lv_obj_t * lv_add_title(const char * title) 
@@ -28,6 +30,12 @@ public:
     lv_obj_t * lv_add_text(const char * text) 
     { 
         return lv_msgbox_add_text(obj, text);
+    }
+
+    template<typename... Args>
+    lv_obj_t * lv_add_text_fmt(const char * fmt, Args&&... args) 
+    { 
+        return lv_msgbox_add_text_fmt(obj, fmt, std::forward<Args>(args)...);
     }
 
     lv_obj_t * lv_add_footer_button(const char * text) 
@@ -70,12 +78,14 @@ public:
         lv_msgbox_close_async(obj);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_MSGBOX_HPP */

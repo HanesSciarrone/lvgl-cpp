@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvSlider {
 public:
+    explicit LvSlider() : obj(nullptr) {}
+
     explicit LvSlider(lv_obj_t* parent) : obj(lv_slider_create(parent)) {}
 
     void lv_set_value(int32_t value, lv_anim_enable_t anim) 
@@ -95,12 +97,14 @@ public:
         return lv_slider_bind_value(obj, subject);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_SLIDER_HPP */

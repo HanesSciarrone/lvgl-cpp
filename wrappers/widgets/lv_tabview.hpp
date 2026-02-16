@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvTabview {
 public:
+    explicit LvTabview() : obj(nullptr) {}
+
     explicit LvTabview(lv_obj_t* parent) : obj(lv_tabview_create(parent)) {}
 
     lv_obj_t * lv_add_tab(const char * name) 
@@ -65,12 +67,19 @@ public:
         return lv_tabview_get_tab_bar(obj);
     }
 
+    lv_dir_t lv_get_tab_bar_position() 
+    { 
+        return lv_tabview_get_tab_bar_position(obj);
+    }
 
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_TABVIEW_HPP */

@@ -13,11 +13,18 @@ namespace lvgl {
 
 class LvDropdown {
 public:
+    explicit LvDropdown() : obj(nullptr) {}
+
     explicit LvDropdown(lv_obj_t* parent) : obj(lv_dropdown_create(parent)) {}
 
-    void lv_set_text(const char * txt) 
+    void lv_set_text(const char * text) 
     { 
-        lv_dropdown_set_text(obj, txt);
+        lv_dropdown_set_text(obj, text);
+    }
+
+    void lv_set_text_static(const char * text) 
+    { 
+        lv_dropdown_set_text_static(obj, text);
     }
 
     void lv_set_options(const char * options) 
@@ -130,12 +137,14 @@ public:
         return lv_dropdown_bind_value(obj, subject);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_DROPDOWN_HPP */

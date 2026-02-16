@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvKeyboard {
 public:
+    explicit LvKeyboard() : obj(nullptr) {}
+
     explicit LvKeyboard(lv_obj_t* parent) : obj(lv_keyboard_create(parent)) {}
 
     void lv_set_textarea(lv_obj_t * ta) 
@@ -70,12 +72,14 @@ public:
         lv_keyboard_def_event_cb(e);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_KEYBOARD_HPP */

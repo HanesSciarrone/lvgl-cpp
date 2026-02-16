@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvButtonmatrix {
 public:
+    explicit LvButtonmatrix() : obj(nullptr) {}
+
     explicit LvButtonmatrix(lv_obj_t* parent) : obj(lv_buttonmatrix_create(parent)) {}
 
     void lv_set_map(const char * const map[]) 
@@ -85,12 +87,14 @@ public:
         return lv_buttonmatrix_get_one_checked(obj);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_BUTTONMATRIX_HPP */

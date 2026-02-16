@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvSwitch {
 public:
+    explicit LvSwitch() : obj(nullptr) {}
+
     explicit LvSwitch(lv_obj_t* parent) : obj(lv_switch_create(parent)) {}
 
     void lv_set_orientation(lv_switch_orientation_t orientation) 
@@ -25,12 +27,14 @@ public:
         return lv_switch_get_orientation(obj);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_SWITCH_HPP */

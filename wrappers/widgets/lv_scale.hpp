@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvScale {
 public:
+    explicit LvScale() : obj(nullptr) {}
+
     explicit LvScale(lv_obj_t* parent) : obj(lv_scale_create(parent)) {}
 
     void lv_set_mode(lv_scale_mode_t mode) 
@@ -180,12 +182,14 @@ public:
         return lv_scale_bind_section_max_value(obj, section, subject);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_SCALE_HPP */

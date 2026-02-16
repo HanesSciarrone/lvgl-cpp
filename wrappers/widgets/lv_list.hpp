@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvList {
 public:
+    explicit LvList() : obj(nullptr) {}
+
     explicit LvList(lv_obj_t* parent) : obj(lv_list_create(parent)) {}
 
     lv_obj_t * lv_add_text(const char * txt) 
@@ -35,12 +37,14 @@ public:
         lv_list_set_button_text(obj, btn, txt);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_LIST_HPP */

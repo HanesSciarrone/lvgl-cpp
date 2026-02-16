@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvRoller {
 public:
+    explicit LvRoller() : obj(nullptr) {}
+
     explicit LvRoller(lv_obj_t* parent) : obj(lv_roller_create(parent)) {}
 
     void lv_set_options(const char * options, lv_roller_mode_t mode) 
@@ -65,12 +67,14 @@ public:
         return lv_roller_bind_value(obj, subject);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_ROLLER_HPP */

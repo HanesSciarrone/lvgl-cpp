@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvArc {
 public:
+    explicit LvArc() : obj(nullptr) {}
+
     explicit LvArc(lv_obj_t* parent) : obj(lv_arc_create(parent)) {}
 
     void lv_set_start_angle(lv_value_precise_t start) 
@@ -135,6 +137,11 @@ public:
         return lv_arc_get_knob_offset(obj);
     }
 
+    uint32_t lv_get_change_rate() 
+    { 
+        return lv_arc_get_change_rate(obj);
+    }
+
     lv_observer_t * lv_bind_value(lv_subject_t * subject) 
     { 
         return lv_arc_bind_value(obj, subject);
@@ -150,12 +157,14 @@ public:
         lv_arc_rotate_obj_to_angle(obj, obj_to_rotate, r_offset);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_ARC_HPP */

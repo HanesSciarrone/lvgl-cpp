@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvLed {
 public:
+    explicit LvLed() : obj(nullptr) {}
+
     explicit LvLed(lv_obj_t* parent) : obj(lv_led_create(parent)) {}
 
     void lv_set_color(lv_color_t color) 
@@ -45,12 +47,19 @@ public:
         return lv_led_get_brightness(obj);
     }
 
+    lv_color_t lv_get_color() 
+    { 
+        return lv_led_get_color(obj);
+    }
 
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_LED_HPP */

@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvBar {
 public:
+    explicit LvBar() : obj(nullptr) {}
+
     explicit LvBar(lv_obj_t* parent) : obj(lv_bar_create(parent)) {}
 
     void lv_set_value(int32_t value, lv_anim_enable_t anim) 
@@ -90,12 +92,14 @@ public:
         return lv_bar_bind_value(obj, subject);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_BAR_HPP */

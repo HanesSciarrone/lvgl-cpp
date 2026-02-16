@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvTable {
 public:
+    explicit LvTable() : obj(nullptr) {}
+
     explicit LvTable(lv_obj_t* parent) : obj(lv_table_create(parent)) {}
 
     void lv_set_cell_value(uint32_t row, uint32_t col, const char * txt) 
@@ -96,12 +98,14 @@ public:
         return lv_table_get_cell_user_data(obj, row, col);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_TABLE_HPP */

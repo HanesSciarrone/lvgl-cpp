@@ -217,6 +217,8 @@ def generate_widgets_wrapper(header_file, script_directory, lvgl_root):
             cls = wrappers[class_name]
             create_function = cls["create"]
 
+            f.write(f"    explicit {class_name}() : obj(nullptr) {{}}\n\n")
+
             if create_function:
                 f.write(
                     f"    explicit {class_name}(lv_obj_t* parent) : obj({create_function}(parent)) {{}}\n\n"
@@ -229,12 +231,13 @@ def generate_widgets_wrapper(header_file, script_directory, lvgl_root):
             for method in cls["methods"]:
                 f.write(method)
 
-            f.write("\n    lv_obj_t* lv_get_obj() const { return obj; }\n")
+            f.write("    lv_obj_t* lv_get_obj() const { return obj; }\n\n")
+            f.write("    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }\n\n")
             f.write("\nprivate:\n")
             f.write("    lv_obj_t* obj;\n")
             f.write("};\n\n")
 
-            f.write("} // namespace lvglcpp\n")
+            f.write("} // namespace lvgl\n")
             f.write(f"#endif /* {guard} */")
 
         logging.info(f"Done writing {output_header}")

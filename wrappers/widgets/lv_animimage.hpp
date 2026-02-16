@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvAnimimage {
 public:
+    explicit LvAnimimage() : obj(nullptr) {}
+
     explicit LvAnimimage(lv_obj_t* parent) : obj(lv_animimg_create(parent)) {}
 
     void lv_set_src(const void * dsc[], size_t num) 
@@ -90,12 +92,14 @@ public:
         return lv_animimg_get_anim(obj);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_ANIMIMAGE_HPP */

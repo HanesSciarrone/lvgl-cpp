@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvSpinbox {
 public:
+    explicit LvSpinbox() : obj(nullptr) {}
+
     explicit LvSpinbox(lv_obj_t* parent) : obj(lv_spinbox_create(parent)) {}
 
     void lv_set_value(int32_t v) 
@@ -85,6 +87,31 @@ public:
         return lv_spinbox_get_step(obj);
     }
 
+    uint32_t lv_get_digit_count() 
+    { 
+        return lv_spinbox_get_digit_count(obj);
+    }
+
+    uint32_t lv_get_dec_point_pos() 
+    { 
+        return lv_spinbox_get_dec_point_pos(obj);
+    }
+
+    int32_t lv_get_min_value() 
+    { 
+        return lv_spinbox_get_min_value(obj);
+    }
+
+    int32_t lv_get_max_value() 
+    { 
+        return lv_spinbox_get_max_value(obj);
+    }
+
+    lv_dir_t lv_get_digit_step_direction() 
+    { 
+        return lv_spinbox_get_digit_step_direction(obj);
+    }
+
     void lv_step_next() 
     { 
         lv_spinbox_step_next(obj);
@@ -110,12 +137,14 @@ public:
         return lv_spinbox_bind_value(obj, subject);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_SPINBOX_HPP */

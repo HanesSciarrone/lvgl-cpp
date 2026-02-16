@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvCalendar {
 public:
+    explicit LvCalendar() : obj(nullptr) {}
+
     explicit LvCalendar(lv_obj_t* parent) : obj(lv_calendar_create(parent)) {}
 
     void lv_set_today_date(uint32_t year, uint32_t month, uint32_t day) 
@@ -90,12 +92,14 @@ public:
         return lv_calendar_get_pressed_date(obj, date);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_CALENDAR_HPP */

@@ -13,6 +13,8 @@ namespace lvgl {
 
 class LvTileview {
 public:
+    explicit LvTileview() : obj(nullptr) {}
+
     explicit LvTileview(lv_obj_t* parent) : obj(lv_tileview_create(parent)) {}
 
     lv_obj_t * lv_add_tile(uint8_t col_id, uint8_t row_id, lv_dir_t dir) 
@@ -35,12 +37,14 @@ public:
         return lv_tileview_get_tile_active(obj);
     }
 
-
     lv_obj_t* lv_get_obj() const { return obj; }
+
+    void lv_set_obj(lv_obj_t* targetObj) { this->obj = targetObj; }
+
 
 private:
     lv_obj_t* obj;
 };
 
-} // namespace lvglcpp
+} // namespace lvgl
 #endif /* LV_TILEVIEW_HPP */
